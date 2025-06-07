@@ -1,0 +1,1 @@
+console.log("Script loaded! This is where you can add interactive JavaScript."); 
