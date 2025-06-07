@@ -1,0 +1,11 @@
+# Task ID: 9
+# Title: Design Additional Booster UI
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Create the UI design for additional boosters outside the main routine.
+# Details:
+Design a separate UI component to display additional boosters that can be consumed outside the main routine.
+
+# Test Strategy:
+Review the design to ensure it is clear and distinct from the main routine UI.

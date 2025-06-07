@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Develop Weekly Routine Adjustment Feature
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Implement the backend logic for adjusting the weekly routine based on feedback.
+# Details:
+Create a service that collects user feedback and adjusts the routine accordingly once a week.
+
+# Test Strategy:
+Test the adjustment logic with various feedback inputs to ensure it updates the routine as expected.

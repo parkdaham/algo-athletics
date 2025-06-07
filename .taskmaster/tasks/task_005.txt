@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Implement Routine Detail View
+# Status: pending
+# Dependencies: 4
+# Priority: medium
+# Description: Develop the front-end component for the routine detail view based on the design.
+# Details:
+Use React to implement the routine detail view. Ensure it displays timing, components, and reasons for each part of the routine.
+
+# Test Strategy:
+Test the component to ensure all details are displayed correctly and interactively.

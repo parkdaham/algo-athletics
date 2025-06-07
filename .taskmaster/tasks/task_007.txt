@@ -1,0 +1,11 @@
+# Task ID: 7
+# Title: Implement Consumption Status UI
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Develop the UI to display the consumption status based on partial or full consumption.
+# Details:
+Create a status indicator that updates based on whether the routine has been partially or fully consumed.
+
+# Test Strategy:
+Simulate different consumption scenarios to ensure the status updates correctly.

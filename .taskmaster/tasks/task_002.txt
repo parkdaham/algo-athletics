@@ -1,0 +1,11 @@
+# Task ID: 2
+# Title: Design User Interface for Routine Summary Card
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Create the UI for displaying the daily routine summary card including basic pack and booster.
+# Details:
+Use a design tool like Figma to create a mockup of the routine summary card. Ensure it includes sections for both the basic pack and booster.
+
+# Test Strategy:
+Review the design with stakeholders to ensure it meets requirements and is visually appealing.

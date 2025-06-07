@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Create 'Consume Now' Button
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Develop the UI and functionality for the 'Consume Now' button to trigger routine dispensing.
+# Details:
+Add a button to the UI that, when clicked, sends a command to the connected device to dispense the routine.
+
+# Test Strategy:
+Test the button to ensure it sends the correct command and handles errors such as device disconnection.

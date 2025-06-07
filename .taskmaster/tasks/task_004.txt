@@ -1,0 +1,11 @@
+# Task ID: 4
+# Title: Design Routine Detail View
+# Status: pending
+# Dependencies: None
+# Priority: medium
+# Description: Create the UI design for the routine detail view, allowing users to see timing and reasons for the routine.
+# Details:
+Design a detailed view layout that includes sections for timing, components of the routine, and the rationale behind each component.
+
+# Test Strategy:
+Conduct a design review to ensure all elements are included and the layout is user-friendly.
