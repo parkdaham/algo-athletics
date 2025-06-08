@@ -1,13 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS variables from Figma foundation, if needed */
+/*
+:root {
+  --color-bg-primary: #fefefe;
+  --color-bg-secondary: #fcfcfd;
+  --color-bg-accent: #e3fbf0;
+  --color-bg-disabled: #e0e3e6;
+  --color-badge: #277dff;
+  --color-text-primary: #13151b;
+  --color-text-secondary: #4f5763;
+  --color-text-tertiary: #7c8592;
+  --color-text-badge: #fcfcfd;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-xl: 32px;
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 12px;
+  --gap-lg: 16px;
+  --gap-xl: 20px;
+  --font-main: 'Pretendard', sans-serif;
+}
+*/
+
+/* Your existing custom styles will be rewritten using Tailwind utilities. */
+/* Keep custom CSS outside Tailwind if necessary, but generally prefer Tailwind classes. */
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 h1 {
-    color: #0056b3;
+  color: #0056b3;
+}
+
+.routine-summary-card {
+  background: var(--color-bg-secondary);
+  padding: var(--gap-lg);
+  border-radius: var(--radius-xl);
+  max-width: 390px;
+  margin: 0 auto;
+  box-shadow: 0 0 16px 0 rgba(21,21,21,0.12), 0 0 8px 0 rgba(21,21,21,0.08);
+}
+
+.routine-summary-header {
+  margin-bottom: var(--gap-xl);
+}
+
+.routine-title {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 34px;
+  color: var(--color-text-primary);
+}
+
+.routine-subtitle {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: var(--color-text-tertiary);
+  margin-top: var(--gap-xs);
+}
+
+.routine-list-card {
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-xl) var(--gap-lg);
+  margin-bottom: var(--gap-lg);
+  box-shadow: 0 0 16px 0 rgba(21,21,21,0.12), 0 0 8px 0 rgba(21,21,21,0.08);
+}
+
+.routine-status-badge {
+  display: inline-block;
+  background: var(--color-badge);
+  color: var(--color-text-badge);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 12px;
+  margin-bottom: var(--gap-sm);
+}
+
+.routine-info-title {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--gap-xs);
+}
+
+.routine-info-desc {
+  font-family: var(--font-main);
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
+
+.routine-tooltip {
+  background: var(--color-bg-accent);
+  border-radius: var(--radius-md);
+  padding: var(--gap-md);
+  margin-top: var(--gap-md);
+}
+
+.tooltip-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--gap-xs);
+}
+
+.tooltip-desc {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
+
+.routine-card {
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--gap-xl) var(--gap-lg);
+  margin-top: var(--gap-lg);
+  box-shadow: 0 0 16px 0 rgba(21,21,21,0.12), 0 0 8px 0 rgba(21,21,21,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.routine-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--gap-xs);
+}
+
+.routine-card-desc {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--gap-md);
+}
+
+.routine-card-btn {
+  background: var(--color-badge);
+  color: var(--color-text-badge);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .routine-summary-card {
+    max-width: 100vw;
+    padding: var(--gap-md);
+  }
 }
 
 /* Basic responsive adjustments */
