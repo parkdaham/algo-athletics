@@ -1,72 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import BottomNav from './components/BottomNav';
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import TopNavBar from './components/TopNavBar';
+import BottomNav from './components/BottomNav';
+import HomePage from './pages/HomePage';
 import RecordPage from './pages/RecordPage';
+import ReportPage from './pages/ReportPage';
 import MorePage from './pages/MorePage';
 import WeeklyRoutineDetailPage from './pages/WeeklyRoutineDetailPage';
-import ReportPage from './pages/ReportPage';
-import HomePage from './pages/HomePage';
 
-function App() {
+const App = () => {
   const location = useLocation();
-  const [navBarBgColor, setNavBarBgColor] = useState('transparent');
-
-  const hideBottomNav = location.pathname === '/weekly-routine-detail';
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollThreshold = 150; // 이 값은 실제 HomePage의 그라데이션 끝 지점에 따라 조정될 수 있습니다.
-      if (window.scrollY > scrollThreshold) {
-        setNavBarBgColor('white'); // 흰색 배경
-      } else {
-        setNavBarBgColor('transparent'); // 투명 배경
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const getTopNavBarProps = () => {
+    const isHomePage = location.pathname === '/';
+    const isRecordPage = location.pathname === '/record';
+    const isWeeklyRoutineDetailPage = location.pathname === '/weekly-routine-detail';
+
+    let showTabs = false;
+    let showIcons = false;
+    let pageTitle = '';
+    let bgColor = 'white';
+
     switch (location.pathname) {
       case '/':
-        return { pageTitle: '내 영양', showIcons: true, showTabs: true, bgColor: 'transparent' };
+        showTabs = true;
+        pageTitle = '';
+        bgColor = 'white'; // 홈 페이지 TopNavBar 배경을 흰색으로 설정
+        break;
       case '/record':
-        return { pageTitle: '기록', showIcons: false, showTabs: false, bgColor: navBarBgColor };
-      case '/more':
-        return { pageTitle: '더보기', showIcons: false, showTabs: false, bgColor: navBarBgColor };
+        showTabs = true;
+        pageTitle = '';
+        break;
       case '/report':
-        return { pageTitle: '리포트', showIcons: false, showTabs: false, bgColor: navBarBgColor };
+        pageTitle = '리포트';
+        break;
+      case '/more':
+        pageTitle = '더보기';
+        break;
       case '/weekly-routine-detail':
-        return { pageTitle: '주간 루틴', showIcons: false, showTabs: false, bgColor: navBarBgColor };
+        pageTitle = '주간 루틴 요약';
+        showIcons = true;
+        break;
       default:
-        return { pageTitle: '내 영양', showIcons: true, showTabs: true, bgColor: navBarBgColor };
+        pageTitle = '';
+        break;
     }
+    return { pageTitle, showIcons, showTabs, bgColor };
   };
 
   const topNavBarProps = getTopNavBarProps();
 
-  return (
-    <div className="flex flex-col h-screen font-sans">
-      <TopNavBar {...topNavBarProps} />
+  const systemHeaderHeight = 47; // This is now handled by TopNavBar itself, so it's not added here.
+  const mainNavBarHeight = 48; // h-12 from TopNavBar
+  // const tabsHeight = 48; // h-12 from TopNavBar for tabs section
 
-      <div className="flex flex-grow flex-col pt-[103px]">
+  const calculatedPaddingTop = `${systemHeaderHeight + mainNavBarHeight + 8}px`;
+
+  const showBottomNav = !['/weekly-routine-detail'].includes(location.pathname);
+
+  return (
+    <div className="flex flex-col h-screen font-sans max-w-[410px] mx-auto">
+      <TopNavBar {...topNavBarProps} location={location} />
+
+      <div className={`flex flex-grow flex-col`} style={{ paddingTop: calculatedPaddingTop, paddingBottom: showBottomNav ? '64px' : '0px' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/record" element={<RecordPage />} />
+          <Route path="/report" element={<ReportPage />} />
           <Route path="/more" element={<MorePage />} />
           <Route path="/weekly-routine-detail" element={<WeeklyRoutineDetailPage />} />
-          <Route path="/report" element={<ReportPage />} />
         </Routes>
       </div>
 
-      {!hideBottomNav && <BottomNav />}
+      {showBottomNav && <BottomNav location={location} />}
     </div>
   );
-}
+};
 
 export default App;
