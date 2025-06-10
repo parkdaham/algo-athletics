@@ -2,11 +2,16 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import TopNavBar from './components/TopNavBar';
 import BottomNav from './components/BottomNav';
+import OnboardingChecker from './components/OnboardingChecker';
 import HomePage from './pages/HomePage';
 import RecordPage from './pages/RecordPage';
 import ReportPage from './pages/ReportPage';
 import MorePage from './pages/MorePage';
 import WeeklyRoutineDetailPage from './pages/WeeklyRoutineDetailPage';
+import OnboardingStartPage from './pages/OnboardingStartPage';
+import OnboardingStep1Page from './pages/OnboardingStep1Page';
+import OnboardingStep2Page from './pages/OnboardingStep2Page';
+import OnboardingStep3Page from './pages/OnboardingStep3Page';
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +46,18 @@ const App = () => {
         pageTitle = '주간 루틴 요약';
         showIcons = true;
         break;
+      case '/onboarding/start':
+        pageTitle = '';
+        break;
+      case '/onboarding/step1':
+        pageTitle = '';
+        break;
+      case '/onboarding/step2':
+        pageTitle = '';
+        break;
+      case '/onboarding/step3':
+        pageTitle = '';
+        break;
       default:
         pageTitle = '';
         break;
@@ -56,19 +73,43 @@ const App = () => {
 
   const calculatedPaddingTop = `${systemHeaderHeight + mainNavBarHeight + 8}px`;
 
-  const showBottomNav = !['/weekly-routine-detail'].includes(location.pathname);
+  const showBottomNav = !['/weekly-routine-detail', '/onboarding/start', '/onboarding/step1', '/onboarding/step2', '/onboarding/step3'].includes(location.pathname);
 
   return (
     <div className="flex flex-col h-screen font-sans max-w-[410px] mx-auto">
-      <TopNavBar {...topNavBarProps} location={location} />
+      {!location.pathname.startsWith('/onboarding') && <TopNavBar {...topNavBarProps} location={location} />}
 
-      <div className={`flex flex-grow flex-col`} style={{ paddingTop: calculatedPaddingTop, paddingBottom: showBottomNav ? '64px' : '0px' }}>
+      <div className={`flex flex-grow flex-col`} style={{ paddingTop: location.pathname.startsWith('/onboarding') ? '0px' : calculatedPaddingTop, paddingBottom: showBottomNav ? '64px' : '0px' }}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/record" element={<RecordPage />} />
-          <Route path="/report" element={<ReportPage />} />
-          <Route path="/more" element={<MorePage />} />
-          <Route path="/weekly-routine-detail" element={<WeeklyRoutineDetailPage />} />
+          <Route path="/" element={
+            <OnboardingChecker>
+              <HomePage />
+            </OnboardingChecker>
+          } />
+          <Route path="/record" element={
+            <OnboardingChecker>
+              <RecordPage />
+            </OnboardingChecker>
+          } />
+          <Route path="/report" element={
+            <OnboardingChecker>
+              <ReportPage />
+            </OnboardingChecker>
+          } />
+          <Route path="/more" element={
+            <OnboardingChecker>
+              <MorePage />
+            </OnboardingChecker>
+          } />
+          <Route path="/weekly-routine-detail" element={
+            <OnboardingChecker>
+              <WeeklyRoutineDetailPage />
+            </OnboardingChecker>
+          } />
+          <Route path="/onboarding/start" element={<OnboardingStartPage />} />
+          <Route path="/onboarding/step1" element={<OnboardingStep1Page />} />
+          <Route path="/onboarding/step2" element={<OnboardingStep2Page />} />
+          <Route path="/onboarding/step3" element={<OnboardingStep3Page />} />
         </Routes>
       </div>
 

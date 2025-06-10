@@ -1,11 +1,11 @@
 # Task ID: 6
-# Title: Create 'Consume Now' Button
+# Title: AI Routine Generation and Feedback
 # Status: pending
-# Dependencies: None
-# Priority: medium
-# Description: Develop the UI and functionality for the 'Consume Now' button to trigger routine dispensing.
+# Dependencies: 5
+# Priority: high
+# Description: Implement AI-based routine generation and allow user feedback for modifications.
 # Details:
-Add a button to the UI that, when clicked, sends a command to the connected device to dispense the routine.
+Develop an AI module to generate personalized routines based on collected data. Allow users to provide feedback and modify the routine. Implement logic to apply changes and finalize the routine.
 
 # Test Strategy:
-Test the button to ensure it sends the correct command and handles errors such as device disconnection.
+Test AI routine generation for accuracy and relevance. Verify feedback mechanism allows modifications and updates the routine correctly.

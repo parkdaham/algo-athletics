@@ -1,11 +1,11 @@
 # Task ID: 5
-# Title: Implement Routine Detail View
+# Title: Onboarding Step 2: Nutrition and Interest Input
 # Status: pending
 # Dependencies: 4
-# Priority: medium
-# Description: Develop the front-end component for the routine detail view based on the design.
+# Priority: high
+# Description: Develop the second step of onboarding to collect nutrition goals and interests using natural language input.
 # Details:
-Use React to implement the routine detail view. Ensure it displays timing, components, and reasons for each part of the routine.
+Create a single-page UI for natural language input. Integrate LLM for processing user input. Capture goals, interests, avoid ingredients, training intensity, and notes.
 
 # Test Strategy:
-Test the component to ensure all details are displayed correctly and interactively.
+Validate that the LLM correctly processes and categorizes user input. Test UI for usability and data capture accuracy.

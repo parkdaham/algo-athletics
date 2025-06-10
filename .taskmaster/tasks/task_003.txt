@@ -1,11 +1,11 @@
 # Task ID: 3
-# Title: Implement Routine Summary Card UI
+# Title: Company Verification Process
 # Status: pending
 # Dependencies: 2
 # Priority: medium
-# Description: Develop the front-end component for the routine summary card based on the design.
+# Description: Develop the company verification feature for users to verify their company affiliation.
 # Details:
-Use React to implement the routine summary card component. Ensure it dynamically displays the daily routine including the basic pack and booster.
+Create a form for users to input company details. Implement backend logic to verify company information against a database or third-party service. Provide feedback to users on verification status.
 
 # Test Strategy:
-Test the component in various screen sizes and ensure it displays the correct information.
+Test the verification process with valid and invalid data. Ensure that the system correctly updates the user's verification status.

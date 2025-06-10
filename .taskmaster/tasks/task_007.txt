@@ -1,11 +1,11 @@
 # Task ID: 7
-# Title: Implement Consumption Status UI
+# Title: Home Screen Integration
 # Status: pending
-# Dependencies: None
+# Dependencies: 6
 # Priority: medium
-# Description: Develop the UI to display the consumption status based on partial or full consumption.
+# Description: Integrate the finalized routine into the home screen for user access.
 # Details:
-Create a status indicator that updates based on whether the routine has been partially or fully consumed.
+Design the home screen to display the user's routine. Ensure seamless transition from onboarding to home screen. Implement logic to lock routine modifications post-onboarding.
 
 # Test Strategy:
-Simulate different consumption scenarios to ensure the status updates correctly.
+Test the home screen for correct display of routines. Ensure the transition from onboarding is smooth and routines are locked as expected.
