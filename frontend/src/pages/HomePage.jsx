@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const HomePage = () => {
     const navigate = useNavigate();
     const [userRoutine, setUserRoutine] = useState(null);
-    const [showDevTools, setShowDevTools] = useState(false);
-    const [routineStates, setRoutineStates] = useState({
+    const [routineStates, _setRoutineStates] = useState({
         morning: true, // 데모용 완료 상태
         beforeWorkout: false,
         afterWorkout: false,
@@ -99,7 +98,7 @@ const HomePage = () => {
     };
 
     return (
-        <div className="relative size-full flex flex-col"
+        <div className="relative flex flex-col"
              style={{ background: 'linear-gradient(180deg, #18c46f 0%, #13a85f 100%)' }}>
 
             {/* 온보딩 버튼 (우측 상단) */}
@@ -133,8 +132,8 @@ const HomePage = () => {
                                 </div>
                             </div>
                             {/* "오늘은 회복력 중심 루틴" 섹션 */}
-                            <Link to="/weekly-routine-detail" className="relative rounded-[16px] shrink-0 w-full shadow-[0px_0px_16px_0px_rgba(24,196,111,0.16),0px_0px_8px_0px_rgba(24,196,111,0.2)] bg-[rgba(254,254,254,0.56)] hover:scale-105 active:scale-105 transition-transform duration-300 ease-in-out" data-name="Block/Chevron content button">
-                                <div className="flex flex-row items-center overflow-clip relative size-full">
+                            <Link to="/weekly-routine-detail" className="relative rounded-xl shrink-0 w-full bg-white hover:scale-105 active:scale-105 transition-transform duration-300 ease-in-out" data-name="Block/Chevron content button" style={{ borderRadius: '12px' }}>
+                                <div className="flex flex-row items-center overflow-clip relative size-full bg-white">
                                     <div className="box-border content-stretch flex flex-row gap-3 items-center justify-start p-[16px] relative w-full">
                                         {/* 3D 병 이미지 */}
                                         <div
@@ -214,7 +213,7 @@ const HomePage = () => {
             {/* Routine Cards Section */}
             <div className={`flex-grow w-full bg-[#fefefe] shadow-[0px_-4px_16px_0px_rgba(21,21,21,0.12)] rounded-tl-[20px] rounded-tr-[20px]`}
                  style={{ overflowY: 'auto' }}>
-                <div className="w-full h-full flex flex-col">
+                <div className="w-full flex flex-col">
                     {/* Scrollable content area for cards */}
                     <div className="px-5 pt-4 pb-24">
                         <div className="box-border content-stretch flex flex-col gap-6 items-start justify-start p-0 relative w-full">
@@ -224,15 +223,15 @@ const HomePage = () => {
                                 <div className="space-y-3">
                                     {/* 아침 루틴 카드 */}
                                     <div 
-                                        className={`bg-[#fefefe] relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 border border-gray-200 ${routineStates.morning ? 'opacity-75' : ''} mt-4`}
+                                        className={`bg-[#fefefe] relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 border border-gray-200 ${routineStates.morning ? 'opacity-75' : ''} mt-4`}
                                         onClick={() => openRoutineModal(routineData.morning)}
                                     >
-                                <div className="relative size-full">
+                                <div className="relative">
                                     <div className="box-border content-stretch flex flex-col items-start justify-start relative w-full">
                                         {/* Blocksectiontitle */}
-                                        <div className="min-h-10 relative shrink-0 w-full">
-                                            <div className="min-h-inherit overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                     {/* Wrapper4 */}
                                                     <div className="relative shrink-0 w-full">
                                                         <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
@@ -260,35 +259,24 @@ const HomePage = () => {
                                         </div>
 
                                         {/* 요약 정보 */}
-                                        <div className="px-5 py-1">
+                                        <div className="px-5">
                                             <p className="text-sm text-gray-600">{routineData.morning.summary}</p>
                                         </div>
                                         
-                                        {/* 영양제 조합 */}
-                                        <div className="relative rounded-xl shrink-0 w-full">
-                                            <div className="flex flex-col justify-center overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-3 items-start justify-center px-5 py-3 relative w-full">
-                                                    <div className="flex flex-wrap gap-2 w-full">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
                                     
                                     
                                     <div 
-                                        className={`bg-gray-50 border border-gray-200 relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 ${supplementStates.morningSupplements ? 'opacity-75' : ''}`}
+                                        className={`bg-gray-50 relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${supplementStates.morningSupplements ? 'opacity-75' : ''}`}
                                         onClick={() => {setSupplementStates(prevState => ({ ...prevState, morningSupplements: !prevState.morningSupplements }));}}
                                     >
-                                        <div className="relative size-full">
+                                        <div className="relative">
                                             <div className="box-border content-stretch flex flex-col items-start justify-start relative w-full">
-                                                <div className="min-h-10 relative shrink-0 w-full">
-                                                    <div className="min-h-inherit overflow-clip relative size-full">
-                                                        <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                                <div className="relative shrink-0 w-full">
+                                                    <div className="overflow-clip relative">
+                                                        <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                             <div className="relative shrink-0 w-full">
                                                                 <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
                                                                     <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
@@ -308,17 +296,8 @@ const HomePage = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="px-5 py-1">
+                                                <div className="px-5">
                                                     <p className="text-sm text-gray-600">추가로 섭취하는 영양제를 기록하세요.</p>
-                                                </div>
-                                                <div className="relative rounded-xl shrink-0 w-full">
-                                                    <div className="flex flex-col justify-center overflow-clip relative size-full">
-                                                        <div className="box-border content-stretch flex flex-col gap-3 items-start justify-center px-5 py-3 relative w-full">
-                                                            <div className="flex flex-wrap gap-2 w-full">
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -332,14 +311,14 @@ const HomePage = () => {
                                 <div className="space-y-3">
                                     {/* 훈련 전 루틴 카드 */}
                             <div 
-                                className={`bg-[#fefefe] relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 border border-gray-200 ${routineStates.beforeWorkout ? 'opacity-75' : ''} mt-4`}
+                                className={`bg-[#fefefe] relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${routineStates.beforeWorkout ? 'opacity-75' : ''} mt-4`}
                                 onClick={() => openRoutineModal(routineData.beforeWorkout)}
                             >
-                                <div className="relative size-full">
+                                <div className="relative">
                                     <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start relative w-full">
-                                        <div className="min-h-10 relative shrink-0 w-full">
-                                            <div className="min-h-inherit overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                     <div className="relative shrink-0 w-full">
                                                         <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
                                                             <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
@@ -363,34 +342,19 @@ const HomePage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* 요약 정보 */}
-                                        <div className="px-5 py-1">
-                                            <p className="text-sm text-gray-600">{routineData.beforeWorkout.summary}</p>
-                                        </div>
-                                        
-                                        {/* 영양제 조합 */}
-                                        <div className="relative rounded-xl shrink-0 w-full">
-                                            <div className="flex flex-col justify-center overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-3 items-start justify-center px-5 py-3 relative w-full">
-                                                    <div className="flex flex-wrap gap-2 w-full">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             {/* 훈련 전 소분팩 (수동 영양제) */}
                             <div 
-                                className={`bg-gray-50 border border-gray-200 relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 ${supplementStates.beforeWorkoutSupplements ? 'opacity-75' : ''}`}
+                                className={`bg-gray-50 relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${supplementStates.beforeWorkoutSupplements ? 'opacity-75' : ''}`}
                                 onClick={() => {setSupplementStates(prevState => ({ ...prevState, beforeWorkoutSupplements: !prevState.beforeWorkoutSupplements }));}}
                             >
-                                <div className="relative size-full">
+                                <div className="relative">
                                     <div className="box-border content-stretch flex flex-col items-start justify-start relative w-full">
-                                        <div className="min-h-10 relative shrink-0 w-full">
-                                            <div className="min-h-inherit overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                     <div className="relative shrink-0 w-full">
                                                         <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
                                                             <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
@@ -408,18 +372,6 @@ const HomePage = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="px-5 py-1">
-                                                    <p className="text-sm text-gray-600">추가로 섭취하는 영양제를 기록하세요.</p>
-                                                </div>
-                                                <div className="relative rounded-xl shrink-0 w-full">
-                                                    <div className="flex flex-col justify-center overflow-clip relative size-full">
-                                                        <div className="box-border content-stretch flex flex-col gap-3 items-start justify-center px-5 py-3 relative w-full">
-                                                            <div className="flex flex-wrap gap-2 w-full">
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -427,14 +379,14 @@ const HomePage = () => {
                             </div>
                             {/* 훈련 후 루틴 카드 */}
                             <div 
-                                className={`bg-[#fefefe] relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 border border-gray-200 ${routineStates.afterWorkout ? 'opacity-75' : ''} mt-4`}
+                                className={`bg-[#fefefe] relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${routineStates.afterWorkout ? 'opacity-75' : ''} mt-4`}
                                 onClick={() => openRoutineModal(routineData.afterWorkout)}
                             >
-                                <div className="relative size-full">
+                                <div className="relative">
                                     <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start relative w-full">
-                                        <div className="min-h-10 relative shrink-0 w-full">
-                                            <div className="min-h-inherit overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                     <div className="relative shrink-0 w-full">
                                                         <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
                                                             <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
@@ -458,19 +410,24 @@ const HomePage = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* 요약 정보 */}
+                                        <div className="px-5">
+                                            <p className="text-sm text-gray-600">{routineData.afterWorkout.summary}</p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             {/* 훈련 후 소분팩 (수동 영양제) */}
                             <div 
-                                className={`bg-gray-50 border border-gray-200 relative rounded-2xl shrink-0 w-full py-4 cursor-pointer transition-all duration-200 ${supplementStates.afterWorkoutSupplements ? 'opacity-75' : ''}`}
+                                className={`bg-gray-50 relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${supplementStates.afterWorkoutSupplements ? 'opacity-75' : ''}`}
                                 onClick={() => {setSupplementStates(prevState => ({ ...prevState, afterWorkoutSupplements: !prevState.afterWorkoutSupplements }));}}
                             >
-                                <div className="relative size-full">
+                                <div className="relative">
                                     <div className="box-border content-stretch flex flex-col items-start justify-start relative w-full">
-                                        <div className="min-h-10 relative shrink-0 w-full">
-                                            <div className="min-h-inherit overflow-clip relative size-full">
-                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start min-h-inherit px-5 py-1 relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
                                                     <div className="relative shrink-0 w-full">
                                                         <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
                                                             <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
@@ -488,17 +445,89 @@ const HomePage = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="px-5 py-1">
+                                                <div className="px-5">
                                                     <p className="text-sm text-gray-600">추가로 섭취하는 영양제를 기록하세요.</p>
                                                 </div>
-                                                <div className="relative rounded-xl shrink-0 w-full">
-                                                    <div className="flex flex-col justify-center overflow-clip relative size-full">
-                                                        <div className="box-border content-stretch flex flex-col gap-3 items-start justify-center px-5 py-3 relative w-full">
-                                                            <div className="flex flex-wrap gap-2 w-full">
-                                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            {/* 자기 전 시간대 섹션 */}
+                            <div className="w-full">
+                                <h2 className="text-xl font-bold text-gray-800 mb-4">자기 전</h2>
+                                <div className="space-y-3">
+                                    {/* 자기 전 루틴 카드 */}
+                            <div 
+                                className={`bg-[#fefefe] relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${routineStates.bedtime ? 'opacity-75' : ''} mt-4`}
+                                onClick={() => openRoutineModal(routineData.bedtime)}
+                            >
+                                <div className="relative">
+                                    <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
+                                                    <div className="relative shrink-0 w-full">
+                                                        <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
+                                                            <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
+                                                                <div className="box-border content-stretch flex flex-row gap-3 items-center justify-start p-0 relative w-full">
+                                                                    <div className="flex flex-col justify-center leading-[0] not-italic relative shrink-0 text-[#13151b] text-[20px] text-justify text-nowrap font-semibold">
+                                                                        <p className="block leading-[28px] whitespace-pre">{routineData.bedtime.supplements.join(', ')}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="shrink-0">
+                                                                <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                                                                    routineStates.bedtime 
+                                                                        ? 'bg-[#40D48B] text-white' 
+                                                                        : 'bg-gray-100 text-gray-700'
+                                                                }`}>
+                                                                    {routineStates.bedtime ? '완료' : '대기중'}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* 요약 정보 */}
+                                        <div className="px-5">
+                                            <p className="text-sm text-gray-600">{routineData.bedtime.summary}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* 자기 전 소분팩 (수동 영양제) */}
+                            <div 
+                                className={`bg-gray-50 relative rounded-xl shrink-0 w-full py-5 cursor-pointer transition-all duration-200 ${supplementStates.bedtimeSupplements ? 'opacity-75' : ''}`}
+                                onClick={() => {setSupplementStates(prevState => ({ ...prevState, bedtimeSupplements: !prevState.bedtimeSupplements }));}}
+                            >
+                                <div className="relative">
+                                    <div className="box-border content-stretch flex flex-col items-start justify-start relative w-full">
+                                        <div className="relative shrink-0 w-full">
+                                            <div className="overflow-clip relative">
+                                                <div className="box-border content-stretch flex flex-col gap-1 items-start justify-start px-5 relative w-full">
+                                                    <div className="relative shrink-0 w-full">
+                                                        <div className="[flex-flow:wrap] box-border content-center flex gap-4 items-center justify-start p-0 relative w-full">
+                                                            <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
+                                                                <div className="box-border content-stretch flex flex-row gap-3 items-center justify-start p-0 relative w-full">
+                                                                    <div className="flex flex-col justify-center leading-[0] not-italic relative shrink-0 text-[#13151b] text-[20px] text-justify text-nowrap font-semibold">
+                                                                        <p className="block leading-[28px] whitespace-pre">숙면 부스트</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="shrink-0">
+                                                                <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${supplementStates.bedtimeSupplements ? 'bg-[#40D48B] text-white' : 'bg-gray-100 text-gray-700'}`}>
+                                                                    {supplementStates.bedtimeSupplements ? '완료' : '대기중'}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="px-5">
+                                                    <p className="text-sm text-gray-600">추가로 섭취하는 영양제를 기록하세요.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -527,7 +556,7 @@ const HomePage = () => {
                     style={{ opacity: isModalOpen ? 1 : 0 }}
                 >
                     <div 
-                        className={`bg-white rounded-t-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto transform transition-transform duration-300 ${isModalOpen ? 'translate-y-0' : 'translate-y-full'}`} 
+                        className={`bg-white rounded-t-xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto transform transition-transform duration-300 ${isModalOpen ? 'translate-y-0' : 'translate-y-full'}`} 
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* 모달 헤더 */}

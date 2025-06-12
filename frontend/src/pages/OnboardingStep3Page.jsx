@@ -10,15 +10,14 @@ const OnboardingStep3Page = () => {
 
     useEffect(() => {
         // 온보딩 데이터 불러오기
-        const data = JSON.parse(localStorage.getItem('onboardingData') || '{}');
-        setOnboardingData(data);
+        setOnboardingData(JSON.parse(localStorage.getItem('onboardingData') || '{}'));
         
         // 여기서 실제로는 AI API를 호출해서 루틴을 생성해야 함
         // 현재는 목업 데이터 사용
-        generateRoutineSummary(data);
+        generateRoutineSummary();
     }, []);
 
-    const generateRoutineSummary = (data) => {
+    const generateRoutineSummary = () => {
         // 실제로는 AI API 호출
         const mockRoutine = {
             title: '회복력 중심 맞춤 루틴',

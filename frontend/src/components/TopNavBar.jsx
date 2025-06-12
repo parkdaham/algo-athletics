@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const TopNavBar = ({ pageTitle, showIcons, showTabs, bgColor, location }) => {
-    const systemHeaderHeight = 47; // Fixed height as per Figma
+    // const systemHeaderHeight = 47; // Fixed height as per Figma - This variable is not used.
 
     const isActiveTab = (path) => location.pathname === path;
 

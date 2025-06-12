@@ -1,218 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ReportPage = () => {
-  // Mock data for the report
-  const weeklyStats = {
-    totalWorkouts: 5,
-    totalCalories: 2450,
-    averageWorkoutTime: 45,
-    completionRate: 85
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleComingSoonClick = (reportType) => {
+    setToastMessage(`${reportType} 리포트는 준비 중입니다.`);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2000); // Hide toast after 2 seconds
   };
 
-  const weeklyProgress = [
-    { day: '월', workouts: 1, calories: 2100, completed: true },
-    { day: '화', workouts: 1, calories: 2300, completed: true },
-    { day: '수', workouts: 0, calories: 1900, completed: false },
-    { day: '목', workouts: 1, calories: 2600, completed: true },
-    { day: '금', workouts: 1, calories: 2400, completed: true },
-    { day: '토', workouts: 1, calories: 2800, completed: true },
-    { day: '일', workouts: 0, calories: 2100, completed: false }
-  ];
-
-  const nutritionData = [
-    { name: '단백질', current: 120, target: 150, unit: 'g', color: '#18c46f' },
-    { name: '탄수화물', current: 250, target: 300, unit: 'g', color: '#277dff' },
-    { name: '지방', current: 60, target: 80, unit: 'g', color: '#EE8539' },
-    { name: '칼로리', current: 2450, target: 2800, unit: 'kcal', color: '#ff6b6b' }
-  ];
+  const handleWeeklyReportClick = () => {
+    navigate('/weekly-report'); // Navigate to the new weekly report detail page
+  };
 
   return (
-    <div className="relative size-full flex flex-col" style={{ 
-      background: 'linear-gradient(180deg, #18c46f 0%, #13a85f 100%)' 
+    <div className="relative size-full flex flex-col items-center justify-center p-6" style={{
+      background: 'white'
     }}>
-      {/* Header Section */}
-      <div className="w-full px-5 pt-[24px] pb-[24px]">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-[24px] leading-[34px] font-semibold text-white">
-            주간 리포트
-          </h1>
-          <p className="text-[14px] leading-[20px] font-medium text-white/80">
-            이번 주 운동과 영양 섭취 현황을 확인해보세요
-          </p>
-        </div>
+      <h1 className="text-[28px] leading-[38px] font-bold text-white mb-8">
+        나의 리포트
+      </h1>
 
-        {/* Weekly Summary Cards */}
-        <div className="grid grid-cols-2 gap-3 mt-6">
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-            <div className="flex flex-col gap-1">
-              <span className="text-[12px] leading-[16px] font-semibold text-white/70">
-                총 운동 횟수
-              </span>
-              <span className="text-[20px] leading-[28px] font-bold text-white">
-                {weeklyStats.totalWorkouts}회
-              </span>
-            </div>
-          </div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-            <div className="flex flex-col gap-1">
-              <span className="text-[12px] leading-[16px] font-semibold text-white/70">
-                평균 칼로리
-              </span>
-              <span className="text-[20px] leading-[28px] font-bold text-white">
-                {weeklyStats.totalCalories}kcal
-              </span>
-            </div>
-          </div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-            <div className="flex flex-col gap-1">
-              <span className="text-[12px] leading-[16px] font-semibold text-white/70">
-                평균 운동 시간
-              </span>
-              <span className="text-[20px] leading-[28px] font-bold text-white">
-                {weeklyStats.averageWorkoutTime}분
-              </span>
-            </div>
-          </div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-            <div className="flex flex-col gap-1">
-              <span className="text-[12px] leading-[16px] font-semibold text-white/70">
-                목표 달성률
-              </span>
-              <span className="text-[20px] leading-[28px] font-bold text-white">
-                {weeklyStats.completionRate}%
-              </span>
-            </div>
-          </div>
-        </div>
+      <div className="w-full max-w-md bg-white rounded-xl p-6 mb-4 border border-[#E0E3E6]">
+        <h2 className="text-[22px] leading-[30px] font-semibold text-[#13151b] mb-3">
+          주간 리포트
+        </h2>
+        <p className="text-[14px] leading-[20px] font-medium text-[#4f5763] mb-4">
+          주 1회 자동 생성되는 리포트로, 복약 이행률, 주간 컨디션 변화, 설계 조정 피드백 등을 확인할 수 있습니다.
+        </p>
+        <button
+          onClick={handleWeeklyReportClick}
+          className="w-full px-6 py-3 bg-[#18c46f] text-white rounded-lg font-medium hover:bg-[#13a85f] transition-colors"
+        >
+          상세 리포트 보기
+        </button>
       </div>
 
-      {/* Main Content Area */}
-      <div className="flex-grow w-full bg-[#fefefe] rounded-tl-[20px] rounded-tr-[20px] shadow-[0px_0px_16px_0px_rgba(24,196,111,0.16),0px_0px_8px_0px_rgba(24,196,111,0.2)]">
-        <div className="px-5 pt-6 pb-6">
-          
-          {/* Weekly Progress */}
-          <div className="mb-6">
-            <h2 className="text-[20px] leading-[28px] font-semibold text-[#13151b] mb-4">
-              주간 진행 상황
-            </h2>
-            <div className="bg-white rounded-xl p-4 shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)]">
-              <div className="grid grid-cols-7 gap-2">
-                {weeklyProgress.map((day, index) => (
-                  <div key={index} className="flex flex-col items-center gap-2">
-                    <span className="text-[12px] leading-[16px] font-semibold text-[#4f5763]">
-                      {day.day}
-                    </span>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      day.completed 
-                        ? 'bg-[#18c46f] text-white' 
-                        : 'bg-[#eeeff2] text-[#4f5763]'
-                    }`}>
-                      {day.completed ? '✓' : '—'}
-                    </div>
-                    <div className="text-center">
-                      <div className="text-[10px] leading-[14px] font-medium text-[#7c8592]">
-                        {day.workouts}회
-                      </div>
-                      <div className="text-[10px] leading-[14px] font-medium text-[#7c8592]">
-                        {day.calories}kcal
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Nutrition Tracking */}
-          <div className="mb-6">
-            <h2 className="text-[20px] leading-[28px] font-semibold text-[#13151b] mb-4">
-              영양 섭취 현황
-            </h2>
-            <div className="bg-white rounded-xl p-4 shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)]">
-              <div className="space-y-4">
-                {nutritionData.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div 
-                        className="w-4 h-4 rounded-full"
-                        style={{ backgroundColor: item.color }}
-                      ></div>
-                      <span className="text-[14px] leading-[20px] font-medium text-[#13151b]">
-                        {item.name}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-20 h-2 bg-[#eeeff2] rounded-full">
-                        <div 
-                          className="h-full rounded-full transition-all duration-300"
-                          style={{ 
-                            backgroundColor: item.color,
-                            width: `${Math.min((item.current / item.target) * 100, 100)}%`
-                          }}
-                        ></div>
-                      </div>
-                      <span className="text-[12px] leading-[16px] font-semibold text-[#4f5763] min-w-[60px] text-right">
-                        {item.current}/{item.target}{item.unit}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Achievement Section */}
-          <div>
-            <h2 className="text-[20px] leading-[28px] font-semibold text-[#13151b] mb-4">
-              이번 주 성과
-            </h2>
-            <div className="bg-white rounded-xl p-4 shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)]">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 p-3 bg-[#f8f9fa] rounded-lg">
-                  <div className="w-8 h-8 bg-[#18c46f] rounded-full flex items-center justify-center">
-                    <span className="text-white text-[14px]">🎯</span>
-                  </div>
-                  <div>
-                    <div className="text-[14px] leading-[20px] font-semibold text-[#13151b]">
-                      주간 목표 달성
-                    </div>
-                    <div className="text-[12px] leading-[16px] font-medium text-[#7c8592]">
-                      5회 중 5회 운동 완료
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-[#f8f9fa] rounded-lg">
-                  <div className="w-8 h-8 bg-[#277dff] rounded-full flex items-center justify-center">
-                    <span className="text-white text-[14px]">💪</span>
-                  </div>
-                  <div>
-                    <div className="text-[14px] leading-[20px] font-semibold text-[#13151b]">
-                      칼로리 목표 달성
-                    </div>
-                    <div className="text-[12px] leading-[16px] font-medium text-[#7c8592]">
-                      일일 평균 2,450kcal 달성
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 bg-[#f8f9fa] rounded-lg">
-                  <div className="w-8 h-8 bg-[#EE8539] rounded-full flex items-center justify-center">
-                    <span className="text-white text-[14px]">🏃</span>
-                  </div>
-                  <div>
-                    <div className="text-[14px] leading-[20px] font-semibold text-[#13151b]">
-                      꾸준한 운동 습관
-                    </div>
-                    <div className="text-[12px] leading-[16px] font-medium text-[#7c8592]">
-                      연속 5일 운동 기록 달성
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div className="w-full max-w-md bg-white rounded-xl p-6 mb-4 border border-[#E0E3E6]">
+        <h2 className="text-[22px] leading-[30px] font-semibold text-[#13151b] mb-3">
+          유전자 리포트
+        </h2>
+        <p className="text-[14px] leading-[20px] font-medium text-[#4f5763] mb-4">
+          보편적 유전자 검사 결과를 기반으로, 개인에게 최적화된 건강 관리 방향을 제시합니다.
+        </p>
+        <button
+          onClick={() => handleComingSoonClick('유전자')}
+          className="w-full px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+        >
+          준비 중... 자세히 알아보기
+        </button>
       </div>
+
+      <div className="w-full max-w-md bg-white rounded-xl p-6 mb-4 border border-[#E0E3E6]">
+        <h2 className="text-[22px] leading-[30px] font-semibold text-[#13151b] mb-3">
+          장 건강 리포트
+        </h2>
+        <p className="text-[14px] leading-[20px] font-medium text-[#4f5763] mb-4">
+          장내 미생물 분석 결과를 통해 장 건강 상태를 파악하고, 맞춤형 식단 및 영양제 가이드를 제공합니다.
+        </p>
+        <button
+          onClick={() => handleComingSoonClick('장 건강')}
+          className="w-full px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+        >
+          준비 중... 자세히 알아보기
+        </button>
+      </div>
+
+      {showToast && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-lg text-sm z-50 transition-opacity duration-300">
+          {toastMessage}
+        </div>
+      )}
     </div>
   );
 };

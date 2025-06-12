@@ -12,15 +12,16 @@ import OnboardingStartPage from './pages/OnboardingStartPage';
 import OnboardingStep1Page from './pages/OnboardingStep1Page';
 import OnboardingStep2Page from './pages/OnboardingStep2Page';
 import OnboardingStep3Page from './pages/OnboardingStep3Page';
+import WeeklyReportPage from './pages/WeeklyReportPage';
+import OnboardingStep4Page from './pages/OnboardingStep4Page';
+import OnboardingStep5Page from './pages/OnboardingStep5Page';
+import OnboardingStep6Page from './pages/OnboardingStep6Page';
+import OnboardingStep7Page from './pages/OnboardingStep7Page';
 
 const App = () => {
   const location = useLocation();
 
   const getTopNavBarProps = () => {
-    const isHomePage = location.pathname === '/';
-    const isRecordPage = location.pathname === '/record';
-    const isWeeklyRoutineDetailPage = location.pathname === '/weekly-routine-detail';
-
     let showTabs = false;
     let showIcons = false;
     let pageTitle = '';
@@ -44,6 +45,10 @@ const App = () => {
         break;
       case '/weekly-routine-detail':
         pageTitle = '주간 루틴 요약';
+        showIcons = true;
+        break;
+      case '/weekly-report':
+        pageTitle = '주간 리포트';
         showIcons = true;
         break;
       case '/onboarding/start':
@@ -73,7 +78,7 @@ const App = () => {
 
   const calculatedPaddingTop = `${systemHeaderHeight + mainNavBarHeight + 8}px`;
 
-  const showBottomNav = !['/weekly-routine-detail', '/onboarding/start', '/onboarding/step1', '/onboarding/step2', '/onboarding/step3'].includes(location.pathname);
+  const showBottomNav = !['/weekly-routine-detail', '/onboarding/start', '/onboarding/step1', '/onboarding/step2', '/onboarding/step3', '/weekly-report'].includes(location.pathname);
 
   return (
     <div className="flex flex-col h-screen font-sans max-w-[410px] mx-auto">
@@ -106,10 +111,19 @@ const App = () => {
               <WeeklyRoutineDetailPage />
             </OnboardingChecker>
           } />
+          <Route path="/weekly-report" element={
+            <OnboardingChecker>
+              <WeeklyReportPage />
+            </OnboardingChecker>
+          } />
           <Route path="/onboarding/start" element={<OnboardingStartPage />} />
           <Route path="/onboarding/step1" element={<OnboardingStep1Page />} />
           <Route path="/onboarding/step2" element={<OnboardingStep2Page />} />
           <Route path="/onboarding/step3" element={<OnboardingStep3Page />} />
+          <Route path="/onboarding/step4" element={<OnboardingStep4Page />} />
+          <Route path="/onboarding/step5" element={<OnboardingStep5Page />} />
+          <Route path="/onboarding/step6" element={<OnboardingStep6Page />} />
+          <Route path="/onboarding/step7" element={<OnboardingStep7Page />} />
         </Routes>
       </div>
 
