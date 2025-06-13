@@ -5,7 +5,7 @@ import BottomNav from './components/BottomNav';
 import OnboardingChecker from './components/OnboardingChecker';
 import HomePage from './pages/HomePage';
 import RecordPage from './pages/RecordPage';
-import ReportPage from './pages/ReportPage';
+import ReportPage from './pages/ReportPage.tsx';
 import MorePage from './pages/MorePage';
 import WeeklyRoutineDetailPage from './pages/WeeklyRoutineDetailPage';
 import OnboardingStartPage from './pages/OnboardingStartPage';
@@ -78,7 +78,7 @@ const App = () => {
 
   const calculatedPaddingTop = `${systemHeaderHeight + mainNavBarHeight + 8}px`;
 
-  const showBottomNav = !['/weekly-routine-detail', '/onboarding/start', '/onboarding/step1', '/onboarding/step2', '/onboarding/step3', '/weekly-report'].includes(location.pathname);
+  const showBottomNav = !location.pathname.startsWith('/onboarding') && !['/weekly-routine-detail', '/weekly-report'].includes(location.pathname);
 
   return (
     <div className="flex flex-col h-screen font-sans max-w-[410px] mx-auto">
@@ -118,7 +118,7 @@ const App = () => {
           } />
           <Route path="/onboarding/start" element={<OnboardingStartPage />} />
           <Route path="/onboarding/step1" element={<OnboardingStep1Page />} />
-          <Route path="/onboarding/step2" element={<OnboardingStep2Page />} />
+          <Route path="/onboarding/step2/:substep?" element={<OnboardingStep2Page />} />
           <Route path="/onboarding/step3" element={<OnboardingStep3Page />} />
           <Route path="/onboarding/step4" element={<OnboardingStep4Page />} />
           <Route path="/onboarding/step5" element={<OnboardingStep5Page />} />

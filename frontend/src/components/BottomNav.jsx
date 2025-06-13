@@ -13,8 +13,8 @@ const BottomNav = () => {
   const inactiveColor = 'rgba(157, 165, 174, 0.8)'; // #9DA5AE에 80% 투명도 적용
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[410px] z-50 pb-2">
-        <div className="bg-[#fefefe] h-16 border-t border-[#e0e3e6] relative">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[410px] z-60">
+        <div className="bg-[#fefefe] h-18 border-t border-[#e0e3e6] relative pt-2 pb-2">
             <div className="flex flex-row h-full items-center justify-around px-2">
                 {/* 내 영양 Tab (Home) */}
                 <Link to="/" className="flex flex-col items-center flex-grow">
@@ -56,7 +56,6 @@ const BottomNav = () => {
                     <span className={`text-xs mt-1 text-[12px] font-semibold ${isMoreActive ? 'text-[#13151b]' : 'text-[#9da5ae]'}`}>더보기</span>
                 </Link>
             </div>
-            {/* System bottom indicator */}
             
         </div>
     </div>

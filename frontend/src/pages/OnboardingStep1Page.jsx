@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TopNavBar from '../components/TopNavBar';
 
 const OnboardingStep1Page = () => {
     const navigate = useNavigate();
@@ -78,14 +79,6 @@ const OnboardingStep1Page = () => {
             // 마지막 질문이면 Step 2로 이동
             localStorage.setItem('onboardingStep1Data', JSON.stringify(formData));
             navigate('/onboarding/step2');
-        }
-    };
-
-    const handleBack = () => {
-        if (currentQuestion > 0) {
-            setCurrentQuestion(prev => prev - 1);
-        } else {
-            navigate('/onboarding/start');
         }
     };
 
@@ -177,6 +170,7 @@ const OnboardingStep1Page = () => {
 
     return (
         <div className="min-h-screen bg-white flex flex-col">
+            <TopNavBar hideBackButton={false} pageTitle="문진" />
             {/* Progress Bar */}
             <div className="px-5 pt-6 pb-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -220,11 +214,12 @@ const OnboardingStep1Page = () => {
                     {currentQuestion < questions.length - 1 ? '다음' : '완료'}
                 </button>
                 
+                {/* Skip Button for Development */} 
                 <button
-                    onClick={handleBack}
-                    className="w-full py-3 text-gray-600 text-lg font-medium"
+                    onClick={() => navigate('/onboarding/step2')}
+                    className="w-full py-3 rounded-lg text-lg font-medium text-blue-600 border border-blue-600 hover:bg-blue-50"
                 >
-                    이전
+                    건너뛰기 (개발용)
                 </button>
             </div>
         </div>
